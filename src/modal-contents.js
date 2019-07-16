@@ -1,14 +1,21 @@
 import { PolymerElement, html } from "@polymer/polymer/polymer-element.js";
-import '@polymer/paper-input/paper-input.js';
-import '@polymer/paper-input/paper-textarea.js';
+import "@polymer/paper-input/paper-input.js";
+import "@polymer/paper-input/paper-textarea.js";
 
 class ModalContents extends PolymerElement {
   static get template() {
     return html`
       <paper-input label="User" value="{{user::input}}"></paper-input>
-      <paper-input label="Task Name" value="{{title::input}}" value="{{user::input}}"></paper-input>
+      <paper-input
+        label="Task Name"
+        value="{{title::input}}"
+        value="{{user::input}}"
+      ></paper-input>
       <paper-input label="Due Date" value="{{date::input}}"></paper-input>
-      <paper-textarea label="Task Description" value="{{description::input}}"></paper-textarea>
+      <paper-textarea
+        label="Task Description"
+        value="{{description::input}}"
+      ></paper-textarea>
       <button on-click="newTask">Submit</button>
     `;
   }
@@ -19,7 +26,7 @@ class ModalContents extends PolymerElement {
       title: String,
       date: String,
       description: String
-    }
+    };
   }
 
   newTask() {
@@ -30,11 +37,11 @@ class ModalContents extends PolymerElement {
       taskdescription__c: this.description,
       status__c: "In Progress",
       color__c: "blue"
-    }
-  
-    const event = new CustomEvent('new task', { detail: newTask });
+    };
+
+    const event = new CustomEvent("new task", { detail: newTask });
     this.dispatchEvent(event);
-  
+
     this.user = "";
     this.title = "";
     this.date = "";
@@ -46,4 +53,4 @@ class ModalContents extends PolymerElement {
   }
 }
 
-customElements.define('modal-contents', ModalContents);
+customElements.define("modal-contents", ModalContents);
